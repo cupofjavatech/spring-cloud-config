@@ -1,0 +1,10 @@
+server:
+  port: 8300
+
+spring:
+  application:
+    name: "ticketservice"
+  profiles:
+    active: default
+  config:
+    import: "configserver:http://localhost:8071/"

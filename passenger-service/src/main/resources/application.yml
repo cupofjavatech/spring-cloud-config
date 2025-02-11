@@ -1,0 +1,8 @@
+  
+spring:
+  application:
+    name: "passengerservice"
+  profiles:
+    active: default
+  config:
+    import: "configserver:http://localhost:8071/"
