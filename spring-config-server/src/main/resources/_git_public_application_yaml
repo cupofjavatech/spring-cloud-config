@@ -1,0 +1,19 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: spring-config-server
+  profiles:
+    active: 
+    - git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cupofjavatech/spring-test-repo.git
+          default-label: test1/demo
+          force-pull: true
+          timeout: 5
+          clone-on-start: true
+          
