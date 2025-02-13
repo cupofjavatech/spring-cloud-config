@@ -1,9 +1,9 @@
 server:
-  port: 8100
-  
+  port: 8301
+
 spring:
   datasource:
-    url: "jdbc:h2:mem:flight"
+    url: "jdbc:h2:mem:ticket-dev"
     driverClassName: "org.h2.Driver"
     username: sa
     password: password
