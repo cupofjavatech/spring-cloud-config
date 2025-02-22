@@ -4,16 +4,38 @@ server:
 spring:
   application:
     name: spring-config-server
+  datasource:
+    url: "jdbc:h2:mem:config-server"
+    driverClassName: "org.h2.Driver"
+    username: sa
+    password: password
+  h2:
+    console:
+      path: "/h2-console"
+      enabled: "true"
+      settings:
+        trace: "false"
+        web-allow-others: "false"
+  jpa:
+    database-platform: "org.hibernate.dialect.H2Dialect"
+    defer-datasource-initialization: "true"
+    hibernate:
+      ddl-auto: "none"
+    properties:
+      hibernate:
+        format-sql: "true"
+  sql:
+    init.mode: "always"
+    
   profiles:
     active: 
-    - git
+    - jdbc
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/cupofjavatech/spring-test-repo.git
-          default-label: test1/demo
-          force-pull: true
-          timeout: 5
-          clone-on-start: true
+        jdbc:
+          sql: SELECT PROPERTIES.PROP_KEY, PROPERTIES.PROP_VAL from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+          order: 1
+          defaultLabel: master
+
           
